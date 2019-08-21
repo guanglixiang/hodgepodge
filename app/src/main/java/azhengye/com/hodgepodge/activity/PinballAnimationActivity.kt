@@ -67,6 +67,8 @@ class PinballAnimationActivity : BaseActivity() {
 
     private fun startBallAnimation(movingView: View) {
         //X轴方向的动画
+        //参考 https://mp.weixin.qq.com/s/z-eH1o9Bc0_Cijp2T-qcSg 优化动画
+        movingView.setLayerType(View.LAYER_TYPE_HARDWARE,null);
         val flingXAnimation = createFlingAnimation(movingView, DynamicAnimation.TRANSLATION_X);
         flingXAnimation.addUpdateListener { animation, value, velocity ->
             if (velocity > 0 && movingView.x > screenW - movingView.width) {
@@ -102,6 +104,7 @@ class PinballAnimationActivity : BaseActivity() {
                 animator.addListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator?) {
                         super.onAnimationEnd(animation)
+                        movingView.setLayerType(View.LAYER_TYPE_NONE, null);
                         rootView?.removeView(movingView)
                     }
                 })
