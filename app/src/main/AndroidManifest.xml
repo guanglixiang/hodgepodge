@@ -11,6 +11,7 @@
             android:theme="@style/AppTheme">
 
         <activity android:name=".activity.PinballAnimationActivity"/>
+        <activity android:name=".activity.MixStringWithEditTextActivity"/>
 
         <activity
                 android:name=".activity.MainActivity"

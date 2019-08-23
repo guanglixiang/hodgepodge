@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MixEditTextAndString">
+        <attr name="beforeText" format="string"/>
+        <attr name="afterText" format="string"/>
+    </declare-styleable>
+</resources>

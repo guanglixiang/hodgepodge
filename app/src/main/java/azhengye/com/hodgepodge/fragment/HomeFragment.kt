@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import azhengye.com.hodgepodge.R
+import azhengye.com.hodgepodge.activity.MixStringWithEditTextActivity
 import azhengye.com.hodgepodge.activity.PinballAnimationActivity
 import azhengye.com.hodgepodge.fragment.adapter.HomeRecyclerViewAdapter
 
@@ -35,19 +36,32 @@ class HomeFragment : BaseFragment(), HomeRecyclerViewAdapter.onItemClickListener
     private fun initData() {
         data = ArrayList();
         data?.add("弹球动画")
+        data?.add("文字 EditText 混排")
     }
 
     private fun initView() {
         homeRecyclerViewAdapter = HomeRecyclerViewAdapter(context!!, data!!)
         homeRecyclerViewAdapter?.listener = this
 
-        recyclerView?.layoutManager = LinearLayoutManager(context)
+        recyclerView?.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
 
         recyclerView?.adapter = homeRecyclerViewAdapter
     }
 
     override fun onItemClick(itemView: View, position: Int) {
-        val intent = Intent(context, PinballAnimationActivity::class.java)
-        startActivity(intent)
+        when(position){
+            0 ->  {
+                val intent = Intent(context, PinballAnimationActivity::class.java)
+                startActivity(intent)
+            }
+            1 -> {
+                val intent = Intent(context, MixStringWithEditTextActivity::class.java)
+                startActivity(intent)
+            }
+            else ->{
+
+            }
+        }
+
     }
 }
