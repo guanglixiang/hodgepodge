@@ -7,7 +7,7 @@
     <azhengye.com.hodgepodge.widgets.MixEditTextAndStringView
             android:id="@+id/mix_view"
             android:layout_width="match_parent"
-            app:afterText="test"
+            app:afterText="testBBBBB"
             app:beforeText="AAAAAA"
             android:layout_height="match_parent"/>
 </FrameLayout>

@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
@@ -64,12 +65,12 @@ class MixEditTextAndStringView @JvmOverloads constructor(
 
         var textViewLastLineWidth = 0F
 
-        for (index in 0..childCount) {
+        for (index in 0 until childCount) {
             var childView = getChildAt(index)
             measureChild(childView, widthMeasureSpec, heightMeasureSpec);
             if (childView is TextView) {
-                resultWidth = childView.measuredHeight
-                resultHeight += childView.measuredWidth;
+                resultWidth += childView.measuredWidth
+                resultHeight = childView.measuredHeight;
                 textViewLastLineWidth = childView.layout.getLineWidth(childView.layout.lineCount - 1)
 
             } else if (childView is EditText) {
@@ -85,7 +86,7 @@ class MixEditTextAndStringView @JvmOverloads constructor(
                     resultHeight += lineHeight;
                 } else {
                     lineWidth = (editChildWidth + textViewLastLineWidth).toInt();
-                    resultWidth += Math.max(resultWidth, (textViewLastLineWidth + lineWidth).toInt());
+                    resultWidth = Math.max(resultWidth, (textViewLastLineWidth + lineWidth).toInt());
                     resultHeight = resultHeight
                 }
             }
@@ -104,7 +105,7 @@ class MixEditTextAndStringView @JvmOverloads constructor(
         var childTop = 0;
 
         //遍历子控件，记录每个子view的位置
-        for (index in 0..childCount) {
+        for (index in 0 until childCount) {
             var childView = getChildAt(index);
 
             //获取到测量的宽和高
@@ -115,24 +116,26 @@ class MixEditTextAndStringView @JvmOverloads constructor(
 
             if (childLeft + childWidth > flowWidth) {
                 //换行处理
-                childTop += (childHeight);
+                childTop += (childHeight)
                 childLeft = 0;
+            }else{
+                childWidth += childWidth
             }
             //布局
             var left = childLeft
             var top = childTop
-            var right = childLeft
-            var bottom = childTop
-            childView.layout(left, top, right, bottom);
+            var right = childWidth
+            var bottom = childHeight
+            childView.layout(left, top, right, bottom)
 
-            childLeft += (childWidth);
+            childLeft += (childWidth)
         }
     }
 
     private fun initViews() {
         addTextView(beforeStr)
 
-        for (i in 0..boxCount) {
+        for (i in 0 until boxCount) {
             var editText = EditText(context);
             var layoutParams = LinearLayout.LayoutParams(boxWidth, boxHeight);
             layoutParams.bottomMargin = padding;
@@ -161,8 +164,10 @@ class MixEditTextAndStringView @JvmOverloads constructor(
     }
 
     private fun addTextView(str: String?) {
-        var beforeText = TextView(context);
+        var beforeText = TextView(context)
         beforeText.setText(str)
+        beforeText.setTextSize(TypedValue.COMPLEX_UNIT_SP,14F);
+        beforeText.setTextColor(resources.getColor(android.R.color.holo_red_dark))
         addView(beforeText)
     }
 
