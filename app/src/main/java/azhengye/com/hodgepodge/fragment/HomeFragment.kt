@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import azhengye.com.hodgepodge.R
+import azhengye.com.hodgepodge.activity.ImageTransformationActivity
 import azhengye.com.hodgepodge.activity.MixStringWithEditTextActivity
 import azhengye.com.hodgepodge.activity.PinballAnimationActivity
 import azhengye.com.hodgepodge.fragment.adapter.HomeRecyclerViewAdapter
@@ -37,6 +38,7 @@ class HomeFragment : BaseFragment(), HomeRecyclerViewAdapter.onItemClickListener
         data = ArrayList();
         data?.add("弹球动画")
         data?.add("文字 EditText 混排")
+        data?.add("图片镜像")
     }
 
     private fun initView() {
@@ -58,8 +60,9 @@ class HomeFragment : BaseFragment(), HomeRecyclerViewAdapter.onItemClickListener
                 val intent = Intent(context, MixStringWithEditTextActivity::class.java)
                 startActivity(intent)
             }
-            else ->{
-
+            2 ->{
+                val intent = Intent(context, ImageTransformationActivity::class.java)
+                startActivity(intent)
             }
         }
 

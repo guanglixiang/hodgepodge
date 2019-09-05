@@ -12,6 +12,7 @@
 
         <activity android:name=".activity.PinballAnimationActivity"/>
         <activity android:name=".activity.MixStringWithEditTextActivity"/>
+        <activity android:name=".activity.ImageTransformationActivity"/>
 
         <activity
                 android:name=".activity.MainActivity"
